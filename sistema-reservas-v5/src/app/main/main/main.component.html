@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-card-header>
+        <img mat-card-avatar [src]="docente.Image_URL">
+        <mat-card-title>{{ docente.Full_Name }}</mat-card-title>
+        <mat-card-subtitle>{{ docente.Email }}</mat-card-subtitle>
+        <button type="button" class="btn btn-danger" (click)="logOut()">Cerrar Sesión</button>
+    </mat-card-header>
+</mat-card>
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center mt-2">
+      <a routerLink="/new-reserva" class="btn btn-outline-primary me-2">Crear Reserva</a>
+</div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+      <ng-container matColumnDef="fecha_registro">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="fecha_reserva">
+        <th mat-header-cell *matHeaderCellDef> Weight </th>
+        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      </ng-container>
+      <ng-container matColumnDef="cantidad_licencias_reservadas">
+        <th mat-header-cell *matHeaderCellDef> Symbol </th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>    
+</table>
+<form action="https://formsubmit.co/jarancibia@continental.edu.pe" method="POST">
+    <input type="hidden" name="_subject" value="Nueva Reserva">
+    <input type="hidden" name="_cc" value="drunkducky892@gmail.com">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="nombre" value="{{ docente.Full_Name }}">
+    <input type="email" name="email" value="{{ docente.Email }}">
+    <input type="text" name="valor" value="Hola">
+    <input type="hidden" name="_next" value="http://localhost:4200/main">
+    <input type="hidden" name="_template" value="table">
+    <button type="submit">Send</button>
+</form>
